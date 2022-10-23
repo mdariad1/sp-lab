@@ -4,29 +4,39 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class Book {
-    String title;
-    Author author;
-    List<Chapter> chapters;
+public class Book extends Section{
+    List<Author> authors;
+    List<Element> content;
+
 
     public Book(String title){
-        this.title = title;
-        this.chapters = new ArrayList<>();
-    };
+        super(title);
+        this.authors = new ArrayList<Author>();
+        this.content = new ArrayList<Element>();
+    }
+
 
     public void addAuthor(Author author){
-        this.author = author;
+        this.authors.add(author);
     };
-    public int createChapter(String name){
-       this.chapters.add(new Chapter(name));
-       return this.chapters.size();
+    public void addContent(Element element){
+       this.content.add(element);
     }
 
     public void print(){
-        System.out.println(title);
-    }
+        System.out.println("Book: " + title + "\n");
 
-    public Chapter getChapter(int chapterIndex) {
-        return this.chapters.get(chapterIndex);
+        System.out.println("Authors: ");
+        for (int i = 0; i < authors.size(); i++) {
+            authors.get(i).print();
+        }
+        System.out.println();
+
+        for (int i = 0; i < content.size(); i++) {
+            content.get(i).print();
+        }
+
+
+
     }
 }

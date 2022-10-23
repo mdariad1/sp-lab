@@ -1,15 +1,14 @@
 package org.example;
-
-import java.util.Collection;
-
 public class Author {
     String name;
-    Collection<Book> books;
+    String surname;
+    Book book;
 
-    public Author(String name){
+    public Author(String name,String surname){
         this.name = name;
+        this.surname = surname;
     };
     public void print(){
-        System.out.println(this.name);
+        System.out.println("Author: " + this.name + " " + this.surname);
     }
 }
