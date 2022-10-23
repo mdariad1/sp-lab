@@ -1,8 +1,23 @@
 package org.example;
 
-public class TableOfContents {
-    Book book;
+public class TableOfContents implements Element {
+    String something;
     public void print(){
-        System.out.println();
+        System.out.println(this.something);
+    }
+
+    @Override
+    public void add(Element element) {
+
+    }
+
+    @Override
+    public void remove(Element element) {
+
+    }
+
+    @Override
+    public Element get() {
+        return null;
     }
 }

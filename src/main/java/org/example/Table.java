@@ -1,15 +1,29 @@
 package org.example;
 
 public class Table implements Element {
-    String title;
-    SubChapter subChapter;
+    String something;
 
     public Table(String title) {
-        this.title = title;
+        this.something = title;
     }
 
     @Override
     public void print(){
-        System.out.println(title);
+        System.out.println(something);
+    }
+
+    @Override
+    public void add(Element element) {
+
+    }
+
+    @Override
+    public void remove(Element element) {
+
+    }
+
+    @Override
+    public Element get() {
+        return null;
     }
 }
