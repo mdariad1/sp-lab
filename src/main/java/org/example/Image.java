@@ -1,11 +1,19 @@
 package org.example;
 
+import java.util.concurrent.TimeUnit;
+
 public class Image implements Element {
     String url;
+    ImageContent content;
     Element parent;
 
-    public Image(String imageName) {
-        this.url = imageName;
+    public Image(String url) {
+        url = url;
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -36,5 +44,9 @@ public class Image implements Element {
     @Override
     public void setParent(Element el) {
         this.parent = el;
+    }
+
+    public ImageContent content(){
+        return content;
     }
 }
