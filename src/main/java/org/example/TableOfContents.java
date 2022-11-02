@@ -2,6 +2,7 @@ package org.example;
 
 public class TableOfContents implements Element {
     String something;
+    Element parent;
     public void print(){
         System.out.println(this.something);
     }
@@ -17,7 +18,17 @@ public class TableOfContents implements Element {
     }
 
     @Override
-    public Element get() {
+    public Element get(int x) {
         return null;
+    }
+
+    @Override
+    public Element getParent() {
+        return parent;
+    }
+
+    @Override
+    public void setParent(Element el) {
+        this.parent = el;
     }
 }

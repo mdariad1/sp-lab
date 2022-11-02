@@ -1,10 +1,12 @@
 package org.example;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Section implements Element{
     String title;
+    Element parent;
     List<Element> children;
 
     public Section(String title) {
@@ -23,16 +25,33 @@ public class Section implements Element{
 
     @Override
     public void add(Element element) {
+        if (element.getParent() != null || element == this){
+            throw new UnsupportedOperationException();
+        }
         this.children.add(element);
+        element.setParent(this);
+
     }
 
     @Override
     public void remove(Element element) {
-
+        this.children.remove(element);
     }
 
     @Override
-    public Element get() {
+    public Element get(int x) {
         return null;
     }
+
+    @Override
+    public Element getParent() {
+        return parent;
+    }
+
+    @Override
+    public void setParent(Element el) {
+        this.parent = el;
+    }
+
+
 }
