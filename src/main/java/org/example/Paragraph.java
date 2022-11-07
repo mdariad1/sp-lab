@@ -3,6 +3,8 @@ package org.example;
 public class Paragraph implements Element{
     String text;
     Element parent;
+
+    AllignStrategy strategy;
     public Paragraph(String text) {
         this.text = text;
     }
@@ -36,4 +38,11 @@ public class Paragraph implements Element{
     public void setParent(Element el) {
         this.parent = el;
     }
+
+    public void setAlignStrategy(AllignStrategy strategy) {
+        this.strategy = strategy;
+        this.text = strategy.render(text);
+    }
+
+
 }
