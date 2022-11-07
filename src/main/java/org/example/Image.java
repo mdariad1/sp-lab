@@ -4,8 +4,12 @@ import java.util.concurrent.TimeUnit;
 
 public class Image implements Element {
     String url;
+
+    String extension;
     ImageContent content;
     Element parent;
+
+
 
     public Image(String url) {
         url = url;
@@ -48,5 +52,14 @@ public class Image implements Element {
 
     public ImageContent content(){
         return content;
+    }
+    public void setContent(){
+        ImageLoaderFactory factory = new ImageLoaderFactory();
+        factory.create(url,extension);
+        this.content = factory.create(url,extension);
+    }
+
+    public void setExtension(String extension) {
+        this.extension = extension;
     }
 }
