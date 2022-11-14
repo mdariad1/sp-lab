@@ -1,13 +1,15 @@
-package org.example;
+package org.example.services;
+
+import org.example.models.ImageContent;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class JPGImageLoader implements ImageLoader{
+public class BMPImageLoader implements ImageLoader {
+    public BMPImageLoader() {}
 
-    public JPGImageLoader(){}
     @Override
     public ImageContent load(String path) {
         BufferedImage img = null;

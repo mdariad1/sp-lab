@@ -1,6 +1,4 @@
-package org.example;
-
-import javax.naming.Context;
+package org.example.services;
 
 public interface AllignStrategy {
     String render(String p);

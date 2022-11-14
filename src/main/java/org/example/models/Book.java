@@ -1,18 +1,15 @@
-package org.example;
+package org.example.models;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-public class Book extends Section{
+public class Book extends Section implements Visitee{
     List<Author> authors;
-    List<Element> content;
-
 
     public Book(String title){
         super(title);
         this.authors = new ArrayList<Author>();
-        this.content = new ArrayList<Element>();
+        this.children = new ArrayList<Element>();
     }
 
 
@@ -20,7 +17,7 @@ public class Book extends Section{
         this.authors.add(author);
     };
     public void addContent(Element element){
-       this.content.add(element);
+       this.children.add(element);
     }
 
     public void print(){
@@ -32,11 +29,16 @@ public class Book extends Section{
         }
         System.out.println();
 
-        for (int i = 0; i < content.size(); i++) {
-            content.get(i).print();
+        for (int i = 0; i < children.size(); i++) {
+            children.get(i).print();
         }
 
 
+
+    }
+
+    @Override
+    public void accept(Visitor v) {
 
     }
 }

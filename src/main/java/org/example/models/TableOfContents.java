@@ -1,16 +1,10 @@
-package org.example;
+package org.example.models;
 
-public class Table implements Element {
+public class TableOfContents implements Element,Visitee {
     String something;
     Element parent;
-
-    public Table(String title) {
-        this.something = title;
-    }
-
-    @Override
     public void print(){
-        System.out.println(something);
+        System.out.println(this.something);
     }
 
     @Override
@@ -36,5 +30,10 @@ public class Table implements Element {
     @Override
     public void setParent(Element el) {
         this.parent = el;
+    }
+
+    @Override
+    public void accept(Visitor v) {
+        this.print();
     }
 }
