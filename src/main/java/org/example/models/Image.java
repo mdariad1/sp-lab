@@ -1,8 +1,10 @@
-package org.example;
+package org.example.models;
+
+import org.example.services.ImageLoaderFactory;
 
 import java.util.concurrent.TimeUnit;
 
-public class Image implements Element {
+public class Image implements Element,Visitee{
     String url;
 
     String extension;
@@ -61,5 +63,10 @@ public class Image implements Element {
 
     public void setExtension(String extension) {
         this.extension = extension;
+    }
+
+    @Override
+    public void accept(Visitor v) {
+        this.print();
     }
 }

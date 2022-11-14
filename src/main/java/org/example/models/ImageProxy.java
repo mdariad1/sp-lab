@@ -1,14 +1,12 @@
-package org.example;
+package org.example.models;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
-public class ImageProxy implements Element,Picture{
+public class ImageProxy implements Element,Picture,Visitee{
     String url;
     Dimension dim;
     PictureContent content;
-    Image realImage;
+    org.example.models.Image realImage;
 
     ImageProxy (String url){}
 
@@ -57,10 +55,15 @@ public class ImageProxy implements Element,Picture{
         return content;
     }
 
-    public Image loadImage(){
+    public org.example.models.Image loadImage(){
         if (realImage == null){
             realImage = new Image(url);
         }
         return realImage;
+    }
+
+    @Override
+    public void accept(Visitor v) {
+        this.print();
     }
 }

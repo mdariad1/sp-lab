@@ -1,17 +1,16 @@
-package org.example;
+package org.example.models;
 
-public class Paragraph implements Element{
-    String text;
+public class Table implements Element,Visitee{
+    String something;
     Element parent;
 
-    AllignStrategy strategy;
-    public Paragraph(String text) {
-        this.text = text;
+    public Table(String title) {
+        this.something = title;
     }
 
     @Override
     public void print(){
-        System.out.println("Paragraph: " + text);
+        System.out.println(something);
     }
 
     @Override
@@ -39,10 +38,8 @@ public class Paragraph implements Element{
         this.parent = el;
     }
 
-    public void setAlignStrategy(AllignStrategy strategy) {
-        this.strategy = strategy;
-        this.text = strategy.render(text);
+    @Override
+    public void accept(Visitor v) {
+        this.print();
     }
-
-
 }

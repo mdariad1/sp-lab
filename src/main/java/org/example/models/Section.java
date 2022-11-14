@@ -1,10 +1,10 @@
-package org.example;
+package org.example.models;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Section implements Element{
+public class Section implements Element,Visitee{
     String title;
     Element parent;
     List<Element> children;
@@ -54,4 +54,12 @@ public class Section implements Element{
     }
 
 
+    @Override
+    public void accept(Visitor v) {
+        v.visitSection(this);
+    }
+
+    public List<Element> getChildren() {
+        return children;
+    }
 }
