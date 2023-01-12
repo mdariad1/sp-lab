@@ -1,6 +1,6 @@
 package org.example.models;
 
-import org.example.services.BookStatistics;
+import org.example.services.JSONVisitor;
 
 public class Main {
     public static void main(String[] args) {
@@ -36,8 +36,12 @@ public class Main {
         cap1.add(new Image("ImageTwo"));
         cap1.add(new Paragraph("Some text"));
         cap1.add(new Table("Table 1"));
-        BookStatistics stats = new BookStatistics();
-        cap1.accept(stats);
-        stats.printStatistics();
+
+
+        JSONVisitor stats = new JSONVisitor();
+        org.json.JSONObject jsonObject = cap1.accept(stats);
+
+        //save jsonObject.toString() intr-un fisier
+
     }
 }

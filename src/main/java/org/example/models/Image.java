@@ -7,6 +7,10 @@ import java.util.concurrent.TimeUnit;
 public class Image implements Element,Visitee{
     String url;
 
+    public String getUrl() {
+        return url;
+    }
+
     String extension;
     ImageContent content;
     Element parent;
@@ -66,7 +70,7 @@ public class Image implements Element,Visitee{
     }
 
     @Override
-    public void accept(Visitor v) {
-        this.print();
+    public <T>  T accept(Visitor<T> v) {
+        return v.visitImage(this);
     }
 }

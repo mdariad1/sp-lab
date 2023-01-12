@@ -12,38 +12,45 @@ public class BookStatistics implements Visitor {
     Element content;
 
     @Override
-    public void visitBook(Book x) {
+    public List<Element> visitBook(Book x) {
         this.contents = x.getChildren();
+        return contents;
     }
 
     @Override
-    public void visitSection(Section x) {
+    public List<Element> visitSection(Section x) {
         this.contents = x.getChildren();
+        return contents;
     }
 
     @Override
-    public void visitTableOfContents(TableOfContents x) {
+    public Element visitTableOfContents(TableOfContents x) {
         this.content = x;
+        return content;
     }
 
     @Override
-    public void visitParagraph(Paragraph x) {
+    public Element visitParagraph(Paragraph x) {
         this.content = x;
+        return content;
     }
 
     @Override
-    public void visitImageProxy(ImageProxy x) {
+    public Element visitImageProxy(ImageProxy x) {
         this.content = x;
+        return content;
     }
 
     @Override
-    public void visitImage(Image x) {
+    public Element visitImage(Image x) {
         this.content = x;
+        return content;
     }
 
     @Override
-    public void visitTable(Table x) {
+    public Element visitTable(Table x) {
         this.content = x;
+        return content;
     }
 
     public void printStatistics(){

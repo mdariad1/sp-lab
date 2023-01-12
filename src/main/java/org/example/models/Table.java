@@ -39,7 +39,11 @@ public class Table implements Element,Visitee{
     }
 
     @Override
-    public void accept(Visitor v) {
-        this.print();
+    public <T>  T accept(Visitor<T> v) {
+        return v.visitTable(this);
+    }
+
+    public String getSomething() {
+        return something;
     }
 }
