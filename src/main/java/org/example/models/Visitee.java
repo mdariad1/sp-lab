@@ -1,5 +1,5 @@
 package org.example.models;
 
 public interface Visitee {
-    public void accept(Visitor v);
+    <T> T accept(Visitor<T> v);
 }

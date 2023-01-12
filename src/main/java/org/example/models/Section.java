@@ -55,11 +55,14 @@ public class Section implements Element,Visitee{
 
 
     @Override
-    public void accept(Visitor v) {
-        v.visitSection(this);
+    public <T>  T accept(Visitor<T> v) {
+        return v.visitSection(this);
     }
-
     public List<Element> getChildren() {
         return children;
+    }
+
+    public String getTitle() {
+        return title;
     }
 }

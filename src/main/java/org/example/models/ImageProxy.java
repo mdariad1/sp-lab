@@ -63,7 +63,11 @@ public class ImageProxy implements Element,Picture,Visitee{
     }
 
     @Override
-    public void accept(Visitor v) {
-        this.print();
+    public <T>  T accept(Visitor<T> v) {
+        return v.visitImageProxy(this);
+    }
+
+    public String getUrl() {
+        return url;
     }
 }

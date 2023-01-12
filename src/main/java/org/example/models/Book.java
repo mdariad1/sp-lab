@@ -38,7 +38,7 @@ public class Book extends Section implements Visitee{
     }
 
     @Override
-    public void accept(Visitor v) {
-
+    public <T>  T accept(Visitor<T> v) {
+        return v.visitBook(this);
     }
 }

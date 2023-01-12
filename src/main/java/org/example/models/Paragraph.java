@@ -48,7 +48,15 @@ public class Paragraph implements Element,Visitee{
 
 
     @Override
-    public void accept(Visitor v) {
-        this.print();
+    public <T>  T accept(Visitor<T> v) {
+        return v.visitParagraph(this);
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public AllignStrategy getStrategy() {
+        return strategy;
     }
 }
