@@ -1,6 +1,6 @@
 package org.example.services;
 
-import org.example.models.ImageContent;
+import org.example.models.entities.ImageContent;
 
 public class ImageLoaderFactory {
 

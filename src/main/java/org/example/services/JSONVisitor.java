@@ -1,6 +1,9 @@
 package org.example.services;
 
-import org.example.models.*;
+import org.example.models.entities.*;
+import org.example.models.interfaces.Element;
+import org.example.models.interfaces.Visitee;
+import org.example.models.interfaces.Visitor;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

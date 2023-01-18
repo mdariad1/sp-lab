@@ -1,15 +1,29 @@
-package org.example.models;
+package org.example.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.example.models.interfaces.Element;
+import org.example.models.interfaces.Visitee;
+import org.example.models.interfaces.Visitor;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book extends Section implements Visitee{
-    List<Author> authors;
+@Entity
+public class Book extends Section implements Visitee {
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "book",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Author> authors;
 
     public Book(String title){
         super(title);
         this.authors = new ArrayList<Author>();
         this.children = new ArrayList<Element>();
+    }
+
+    public Book() {
+        super();
     }
 
 

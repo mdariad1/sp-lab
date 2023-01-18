@@ -3,11 +3,19 @@ package org.example;
 import org.example.components.ClientComponent;
 import org.example.components.SingletonComponent;
 import org.example.components.TransientComponent;
+import org.example.controllers.HelloController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
 
 @SpringBootApplication
+@ComponentScan(basePackageClasses = { HelloController.class})
+@EntityScan(basePackages = {"org.example.models.entities","org.example.models.interfaces"})
+@EnableJpaRepositories(basePackages = { "org.example.repositories" })
 public class Main {
     public static void main(String[] args) {
 //

@@ -1,14 +1,34 @@
-package org.example.models;
+package org.example.models.entities;
 
+import org.example.models.interfaces.Element;
+import org.example.models.interfaces.Visitee;
+import org.example.models.interfaces.Visitor;
 import org.example.services.AllignStrategy;
 
-public class Paragraph implements Element,Visitee{
+import javax.persistence.*;
+
+@Entity
+public class Paragraph implements Element, Visitee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column
     String text;
+
+    @ManyToOne(targetEntity = Element.class)
+    @JoinColumn(name = "parent_id", referencedColumnName = "id")
     Element parent;
 
+    @ManyToOne()
+    @JoinColumn(name = "strategy_id", referencedColumnName = "id")
     AllignStrategy strategy;
     public Paragraph(String text) {
         this.text = text;
+    }
+
+    public Paragraph() {
+
     }
 
     @Override

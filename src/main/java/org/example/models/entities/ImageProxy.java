@@ -1,12 +1,42 @@
-package org.example.models;
+package org.example.models.entities;
 
+import org.example.models.interfaces.Element;
+import org.example.models.interfaces.Picture;
+import org.example.models.interfaces.Visitee;
+import org.example.models.interfaces.Visitor;
+
+import javax.persistence.*;
 import java.awt.*;
 
-public class ImageProxy implements Element,Picture,Visitee{
+@Entity
+public class ImageProxy implements Element, Picture, Visitee {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column
     String url;
+
+    @Transient
     Dimension dim;
+
+    @Transient
     PictureContent content;
-    org.example.models.Image realImage;
+    @ManyToOne()
+    @JoinColumn(name = "realImage_id", referencedColumnName = "id")
+    Image realImage;
+
+    public ImageProxy() {
+
+    }
+
+    public Image getRealImage() {
+        return realImage;
+    }
+
+    public void setRealImage(Image realImage) {
+        this.realImage = realImage;
+    }
 
     ImageProxy (String url){}
 
@@ -55,7 +85,7 @@ public class ImageProxy implements Element,Picture,Visitee{
         return content;
     }
 
-    public org.example.models.Image loadImage(){
+    public Image loadImage(){
         if (realImage == null){
             realImage = new Image(url);
         }

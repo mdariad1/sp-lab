@@ -1,7 +1,7 @@
-import org.example.models.Element;
-import org.example.models.Image;
-import org.example.models.Paragraph;
-import org.example.models.Section;
+import org.example.models.interfaces.Element;
+import org.example.models.entities.Image;
+import org.example.models.entities.Paragraph;
+import org.example.models.entities.Section;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;

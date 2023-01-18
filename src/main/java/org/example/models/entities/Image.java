@@ -1,18 +1,30 @@
-package org.example.models;
+package org.example.models.entities;
 
+import org.example.models.interfaces.Element;
+import org.example.models.interfaces.Visitee;
+import org.example.models.interfaces.Visitor;
 import org.example.services.ImageLoaderFactory;
 
+import javax.persistence.*;
 import java.util.concurrent.TimeUnit;
 
-public class Image implements Element,Visitee{
+@Entity
+public class Image implements Element, Visitee {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column
     String url;
 
-    public String getUrl() {
-        return url;
-    }
-
+    @Column
     String extension;
+    @ManyToOne()
+    @JoinColumn(name = "content_id", referencedColumnName = "id")
     ImageContent content;
+
+    @ManyToOne(targetEntity = Element.class)
+    @JoinColumn(name = "parent_id", referencedColumnName = "id")
     Element parent;
 
 
@@ -24,6 +36,14 @@ public class Image implements Element,Visitee{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public Image() {
+    }
+
+
+    public String getUrl() {
+        return url;
     }
 
     @Override

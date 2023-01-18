@@ -1,7 +1,22 @@
-package org.example.models;
+package org.example.models.entities;
 
-public class TableOfContents implements Element,Visitee {
+import org.example.models.interfaces.Element;
+import org.example.models.interfaces.Visitee;
+import org.example.models.interfaces.Visitor;
+
+import javax.persistence.*;
+
+@Entity
+public class TableOfContents implements Element, Visitee {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column
     String something;
+
+    @ManyToOne(targetEntity = Element.class)
+    @JoinColumn(name = "parent_id", referencedColumnName = "id")
     Element parent;
     public void print(){
         System.out.println(this.something);

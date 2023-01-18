@@ -1,8 +1,8 @@
-package org.example.models;
+package org.example.models.entities;
 
 import org.example.services.JSONVisitor;
 
-public class Main {
+public class MainOld {
     public static void main(String[] args) {
 //        Book noapteBuna = new Book("Noapte buna, copii!");
 //        Author rpGheo = new Author("Radu Pavel" ,"Gheo");

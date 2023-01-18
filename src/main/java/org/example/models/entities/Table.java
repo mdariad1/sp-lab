@@ -1,11 +1,29 @@
-package org.example.models;
+package org.example.models.entities;
 
-public class Table implements Element,Visitee{
+import org.example.models.interfaces.Element;
+import org.example.models.interfaces.Visitee;
+import org.example.models.interfaces.Visitor;
+
+import javax.persistence.*;
+
+@Entity
+public class Table implements Element, Visitee {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column
     String something;
+    @ManyToOne(targetEntity = Element.class)
+    @JoinColumn(name = "parent_id", referencedColumnName = "id")
     Element parent;
 
     public Table(String title) {
         this.something = title;
+    }
+
+    public Table() {
+
     }
 
     @Override

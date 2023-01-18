@@ -1,4 +1,6 @@
-package org.example.models;
+package org.example.models.interfaces;
+
+import org.example.models.entities.*;
 
 public interface Visitor<Response>{
     public Response visitBook(Book x);
