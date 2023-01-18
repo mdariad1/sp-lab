@@ -16,12 +16,11 @@ public class Paragraph implements Element, Visitee {
     @Column
     String text;
 
-    @ManyToOne(targetEntity = Element.class)
+    @ManyToOne(targetEntity = AbstractElement.class)
     @JoinColumn(name = "parent_id", referencedColumnName = "id")
-    Element parent;
+    AbstractElement parent;
 
-    @ManyToOne()
-    @JoinColumn(name = "strategy_id", referencedColumnName = "id")
+    @Transient
     AllignStrategy strategy;
     public Paragraph(String text) {
         this.text = text;
@@ -58,7 +57,7 @@ public class Paragraph implements Element, Visitee {
 
     @Override
     public void setParent(Element el) {
-        this.parent = el;
+        this.parent = (AbstractElement) el;
     }
 
     public void setAlignStrategy(AllignStrategy strategy) {

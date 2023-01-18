@@ -3,7 +3,6 @@ package org.example.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import org.dom4j.tree.BaseElement;
 import org.example.models.interfaces.Element;
 import org.example.models.interfaces.Visitee;
 import org.example.models.interfaces.Visitor;
@@ -17,23 +16,22 @@ import java.util.List;
 public class Section implements Element, Visitee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column
     String title;
 
-    @ManyToOne(targetEntity = Element.class)
+    @ManyToOne(targetEntity = AbstractElement.class)
     @JoinColumn(name = "parent_id", referencedColumnName = "id")
-    private Element parent;
+    private AbstractElement parent;
 
     @JsonIgnore
-    //@OneToMany(mappedBy = "parent",cascade = CascadeType.ALL,orphanRemoval = true)
-    @OneToMany(targetEntity = Element.class)
-    List<Element> children;
+    @OneToMany(targetEntity = AbstractElement.class,mappedBy = "parent",cascade = CascadeType.ALL,orphanRemoval = true)
+    List<AbstractElement> children;
 
     public Section(String title) {
         this.title = title;
-        this.children = new ArrayList<Element>();
+        this.children = new ArrayList<AbstractElement>();
     }
 
     public Section() {
@@ -54,7 +52,7 @@ public class Section implements Element, Visitee {
         if (element.getParent() != null || element == this){
             throw new UnsupportedOperationException();
         }
-        this.children.add(element);
+        this.children.add((AbstractElement) element);
         element.setParent(this);
 
     }
@@ -76,7 +74,7 @@ public class Section implements Element, Visitee {
 
     @Override
     public void setParent(Element el) {
-        this.parent = el;
+        this.parent = (AbstractElement) el;
     }
 
 
@@ -84,7 +82,7 @@ public class Section implements Element, Visitee {
     public <T>  T accept(Visitor<T> v) {
         return v.visitSection(this);
     }
-    public List<Element> getChildren() {
+    public List<AbstractElement> getChildren() {
         return children;
     }
 

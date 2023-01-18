@@ -23,9 +23,9 @@ public class Image implements Element, Visitee {
     @JoinColumn(name = "content_id", referencedColumnName = "id")
     ImageContent content;
 
-    @ManyToOne(targetEntity = Element.class)
+    @ManyToOne(targetEntity = AbstractElement.class)
     @JoinColumn(name = "parent_id", referencedColumnName = "id")
-    Element parent;
+    AbstractElement parent;
 
 
 
@@ -73,7 +73,7 @@ public class Image implements Element, Visitee {
 
     @Override
     public void setParent(Element el) {
-        this.parent = el;
+        this.parent = (AbstractElement) el;
     }
 
     public ImageContent content(){

@@ -3,6 +3,7 @@ package org.example;
 import org.example.components.ClientComponent;
 import org.example.components.SingletonComponent;
 import org.example.components.TransientComponent;
+import org.example.controllers.BookController;
 import org.example.controllers.HelloController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,7 +14,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 @SpringBootApplication
-@ComponentScan(basePackageClasses = { HelloController.class})
+@ComponentScan(basePackageClasses = { HelloController.class, BookController.class,ClientComponent.class,
+        SingletonComponent.class,TransientComponent.class})
 @EntityScan(basePackages = {"org.example.models.entities","org.example.models.interfaces"})
 @EnableJpaRepositories(basePackages = { "org.example.repositories" })
 public class Main {

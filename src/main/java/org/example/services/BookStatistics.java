@@ -10,17 +10,17 @@ import java.util.List;
 
 
 public class BookStatistics implements Visitor {
-    List<Element> contents;
+    List<AbstractElement> contents;
     Element content;
 
     @Override
-    public List<Element> visitBook(Book x) {
+    public List<AbstractElement> visitBook(Book x) {
         this.contents = x.getChildren();
         return contents;
     }
 
     @Override
-    public List<Element> visitSection(Section x) {
+    public List<AbstractElement> visitSection(Section x) {
         this.contents = x.getChildren();
         return contents;
     }
@@ -62,16 +62,16 @@ public class BookStatistics implements Visitor {
         dict.put("Paragraph",0);
         dict.put("Table",0);
 
-        for (int i=0; i< contents.size(); i++){
-            if (contents.get(i) instanceof Section)
-                dict.put("Section",dict.get("Section")+1);
-            if ((contents.get(i) instanceof Image) || (contents.get(i) instanceof ImageProxy))
-                dict.put("Image",dict.get("Image")+1);
-            if (contents.get(i) instanceof Paragraph)
-                dict.put("Paragraph",dict.get("Paragraph")+1);
-            if (contents.get(i) instanceof Table)
-                dict.put("Table",dict.get("Table")+1);
-        }
+//        for (int i=0; i< contents.size(); i++){
+//            if (contents.get(i) instanceof Section)
+//                dict.put("Section",dict.get("Section")+1);
+//            if ((contents.get(i) instanceof Image) || (contents.get(i) instanceof ImageProxy))
+//                dict.put("Image",dict.get("Image")+1);
+//            if (contents.get(i) instanceof Paragraph)
+//                dict.put("Paragraph",dict.get("Paragraph")+1);
+//            if (contents.get(i) instanceof Table)
+//                dict.put("Table",dict.get("Table")+1);
+//        }
 
         System.out.println("Book Statistics:");
         if (dict.get("Section") > 0)

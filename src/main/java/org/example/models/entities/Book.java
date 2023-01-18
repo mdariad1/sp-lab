@@ -10,16 +10,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Book extends Section implements Visitee {
 
     @JsonIgnore
     @OneToMany(mappedBy = "book",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Author> authors;
 
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Column
+    private String title;
+
     public Book(String title){
         super(title);
         this.authors = new ArrayList<Author>();
-        this.children = new ArrayList<Element>();
+        this.children = new ArrayList<AbstractElement>();
     }
 
     public Book() {
@@ -30,7 +43,7 @@ public class Book extends Section implements Visitee {
     public void addAuthor(Author author){
         this.authors.add(author);
     };
-    public void addContent(Element element){
+    public void addContent(AbstractElement element){
        this.children.add(element);
     }
 

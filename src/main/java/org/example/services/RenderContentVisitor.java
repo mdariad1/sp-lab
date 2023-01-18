@@ -8,17 +8,17 @@ import org.example.models.interfaces.Visitor;
 import java.util.List;
 
 public class RenderContentVisitor implements Visitor {
-    List<Element> contents;
+    List<AbstractElement> contents;
     Element content;
 
     @Override
-    public List<Element> visitBook(Book x) {
+    public List<AbstractElement> visitBook(Book x) {
         this.contents = x.getChildren();
         return contents;
     }
 
     @Override
-    public List<Element> visitSection(Section x) {
+    public List<AbstractElement> visitSection(Section x) {
         this.contents = x.getChildren();
         return contents;
     }

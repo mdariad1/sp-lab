@@ -1,34 +1,24 @@
 package org.example.models.entities;
 
 import org.example.models.interfaces.Element;
-import org.example.models.interfaces.Visitee;
-import org.example.models.interfaces.Visitor;
 
 import javax.persistence.*;
 
+
 @Entity
-public class Table implements Element, Visitee {
+public class AbstractElement implements Element {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column
-    String something;
+    Integer id = null;
+
     @ManyToOne(targetEntity = AbstractElement.class)
     @JoinColumn(name = "parent_id", referencedColumnName = "id")
-    AbstractElement parent;
-
-    public Table(String title) {
-        this.something = title;
-    }
-
-    public Table() {
-
-    }
+    private AbstractElement parent;
 
     @Override
-    public void print(){
-        System.out.println(something);
+    public void print() {
+
     }
 
     @Override
@@ -48,20 +38,11 @@ public class Table implements Element, Visitee {
 
     @Override
     public Element getParent() {
-        return parent;
+        return null;
     }
 
     @Override
     public void setParent(Element el) {
-        this.parent = (AbstractElement) el;
-    }
 
-    @Override
-    public <T>  T accept(Visitor<T> v) {
-        return v.visitTable(this);
-    }
-
-    public String getSomething() {
-        return something;
     }
 }

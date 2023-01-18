@@ -2,12 +2,8 @@ package org.example.models.interfaces;
 
 import javax.persistence.*;
 
-@Entity()
-public interface Element {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id = null;
+public interface Element {
 
     void print();
     void add(Element element);

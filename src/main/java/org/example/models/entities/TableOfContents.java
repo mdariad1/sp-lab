@@ -15,9 +15,9 @@ public class TableOfContents implements Element, Visitee {
     @Column
     String something;
 
-    @ManyToOne(targetEntity = Element.class)
+    @ManyToOne(targetEntity = AbstractElement.class)
     @JoinColumn(name = "parent_id", referencedColumnName = "id")
-    Element parent;
+    AbstractElement parent;
     public void print(){
         System.out.println(this.something);
     }
@@ -44,7 +44,7 @@ public class TableOfContents implements Element, Visitee {
 
     @Override
     public void setParent(Element el) {
-        this.parent = el;
+        this.parent = (AbstractElement) el;
     }
 
     @Override

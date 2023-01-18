@@ -19,16 +19,15 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Element> getUserById (@PathVariable("id") Long id) {
-        Book book = bookRepository.getOne(Math.toIntExact(id));
+    public ResponseEntity<Element> getUserById (@PathVariable("id") Integer id) {
+        Book book = bookRepository.findBookById(id);
         return new ResponseEntity<>(book, HttpStatus.OK);
     }
 
     @PostMapping("")
-    public ResponseEntity<Book> addBook() {
-        Book newBook = new Book();
-        bookRepository.save(newBook);
-        return new ResponseEntity<>(newBook, HttpStatus.CREATED);
+    public ResponseEntity<Book> addBook(@RequestBody Book book) {
+        bookRepository.save(book);
+        return new ResponseEntity<>(book, HttpStatus.CREATED);
     }
 
 }
